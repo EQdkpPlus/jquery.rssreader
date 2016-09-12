@@ -66,8 +66,14 @@
 						if (i > e - 1) return;
 						var a = $(this).find('title').text();
 						var b = $(this).find('published').text();
-						var mymo = moment(new Date(b)).utcOffset(mmocms_user_timezone);
-						b = mymo.format(df);
+						var u = $(this).find('updated').text();
+						if(b != ""){
+							var mymo = moment(new Date(b)).utcOffset(mmocms_user_timezone);
+							b = mymo.format(df);	
+						} elseif (u != ""){
+							var mymo = moment(new Date(u)).utcOffset(mmocms_user_timezone);
+							b = mymo.format(df);
+						} 
 						var c = $(this).find('link').attr('href');
 						var d = $(this).find('summary').text();
 						$('<a href="' + c + '">' + a + '</a>').html(a).appendTo(container);
